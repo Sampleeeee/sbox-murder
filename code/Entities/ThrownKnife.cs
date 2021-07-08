@@ -16,15 +16,9 @@ namespace Murder.Entities
 			base.Spawn();
 		}
 
-		public override void Simulate( Client cl )
+		[Event.Tick]
+		private void OnTick()
 		{
-			base.Simulate( cl );
-
-			GlowActive = true;
-			GlowState = GlowStates.GlowStateOn;
-			GlowDistanceStart = -32;
-			GlowDistanceEnd = 4096;
-
 			if ( !IsServer ) return;
 
 			foreach ( var player in All.OfType<MurderPlayer>()
@@ -35,6 +29,16 @@ namespace Murder.Entities
 
 				break;
 			}
+		}
+		
+		public override void Simulate( Client cl )
+		{
+			base.Simulate( cl );
+
+			GlowActive = true;
+			GlowState = GlowStates.GlowStateOn;
+			GlowDistanceStart = -32;
+			GlowDistanceEnd = 4096;
 		}
 
 		public override void StartTouch( Entity other )
