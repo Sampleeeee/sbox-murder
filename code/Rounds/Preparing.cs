@@ -21,29 +21,20 @@ namespace Murder.Rounds
 		private void FindNewDetective()
 		{
 			var pawn = Client.All[new Random().Next( Client.All.Count )].Pawn;
-			var last = Game.LastDetective;
 
-			if ( last is null || last != pawn )
-			{
-				pawn.Tags.Add( "detective" );
-				Game.LastDetective = pawn as MurderPlayer;
+			pawn.Tags.Add( "detective" );
+			Game.LastDetective = pawn as MurderPlayer;
 
-				BlackScreen.ShowTitle( To.Single( pawn.GetClientOwner() ), "You are a detective!", Color.Blue );
-				BlackScreen.ShowDescription( To.Single( pawn.GetClientOwner() ),
-					"You have been given a revolver. Find the murderer and kill them.", Color.White );
-
-				return;
-			}
-
-			FindNewDetective();
+			BlackScreen.ShowTitle( To.Single( pawn.GetClientOwner() ), "You are a detective!", Color.Blue );
+			BlackScreen.ShowDescription( To.Single( pawn.GetClientOwner() ),
+				"You have been given a revolver. Find the murderer and kill them.", Color.White );
 		}
 
 		private void FindNewMurderer()
 		{
 			var pawn = Client.All[new Random().Next( Client.All.Count )].Pawn;
-			var last = Game.LastMurderer;
 
-			if ( (last is null || last != pawn) && Game.LastDetective != pawn )
+			if ( Game.LastDetective != pawn )
 			{
 				pawn.Tags.Add( "murderer" );
 				Game.LastMurderer = pawn as MurderPlayer;

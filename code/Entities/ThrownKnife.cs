@@ -11,13 +11,20 @@ namespace Murder.Entities
 		public override void Spawn()
 		{
 			SetModel( "weapons/rust_boneknife/rust_boneknife.vmdl" );
+			GlowColor = Color.Red;
 
 			base.Spawn();
 		}
 
-		[Event.Tick]
-		private void OnTick()
+		public override void Simulate( Client cl )
 		{
+			base.Simulate( cl );
+
+			GlowActive = true;
+			GlowState = GlowStates.GlowStateOn;
+			GlowDistanceStart = -32;
+			GlowDistanceEnd = 4096;
+
 			if ( !IsServer ) return;
 
 			foreach ( var player in All.OfType<MurderPlayer>()

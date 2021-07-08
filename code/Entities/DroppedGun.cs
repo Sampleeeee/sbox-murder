@@ -11,6 +11,7 @@ namespace Murder.Entities
 		public override void Spawn()
 		{
 			SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
+			GlowColor = Color.Blue;
 
 			base.Spawn();
 		}
