@@ -5,7 +5,7 @@ using Sandbox;
 
 namespace Murder
 {
-	[Library( "sbox-murder", Title = "Murder" )]
+	[Library( "murder", Title = "Murder" )]
 	public partial class MurderGame : Game
 	{
 		[Net] public BaseRound Round { get; set; }
