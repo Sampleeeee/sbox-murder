@@ -63,7 +63,7 @@ namespace Murder.Rounds
 				OnTimeUp();
 			}
 			else
-				TimeLeftFormatted = TimeSpan.FromSeconds( TimeLeft ).ToString( "mm\\:ss" );
+				TimeLeftFormatted = TimeSpan.FromSeconds( TimeLeft ).ToString( "m\\:ss" );
 		}
 		
 		public virtual void OnPlayerSpawn( MurderPlayer player ) { }
