@@ -23,7 +23,7 @@ namespace Murder.Rounds
 			var pawn = Client.All[new Random().Next( Client.All.Count )].Pawn;
 
 			pawn.Tags.Add( "detective" );
-			Game.LastDetective = pawn as MurderPlayer;
+			Game.Detective = pawn as MurderPlayer;
 
 			BlackScreen.ShowTitle( To.Single( pawn.GetClientOwner() ), "You are a detective!", Color.Blue );
 			BlackScreen.ShowDescription( To.Single( pawn.GetClientOwner() ),
@@ -34,10 +34,10 @@ namespace Murder.Rounds
 		{
 			var pawn = Client.All[new Random().Next( Client.All.Count )].Pawn;
 
-			if ( Game.LastDetective != pawn )
+			if ( Game.Detective != pawn )
 			{
 				pawn.Tags.Add( "murderer" );
-				Game.LastMurderer = pawn as MurderPlayer;
+				Game.Murderer = pawn as MurderPlayer;
 
 				BlackScreen.ShowTitle( To.Single( pawn.GetClientOwner() ), "You are a murderer!", Color.Red );
 				BlackScreen.ShowDescription( To.Single( pawn.GetClientOwner() ),

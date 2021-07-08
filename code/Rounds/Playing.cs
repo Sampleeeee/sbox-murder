@@ -73,7 +73,7 @@ namespace Murder.Rounds
 			else if ( alivePlayers <= 1 )
 			{
 				BlackScreen.ShowTitle( "Murderers win!", Color.Red );
-				BlackScreen.ShowDescription( $"{Game.LastMurderer.FakeName} ({Game.LastMurderer.GetClientOwner().Name}) was the murderer!",
+				BlackScreen.ShowDescription( $"{Game.Murderer.FakeName} ({Game.Murderer.GetClientOwner().Name}) was the murderer!",
 					Color.White );
 				
 				// TODO This may cause issues if people leave and shit
@@ -107,8 +107,8 @@ namespace Murder.Rounds
 				player.Respawn();
 			}
 
-			Game.LastMurderer.Inventory.Add( new Knife() );
-			Game.LastDetective.Inventory.Add( new Revolver() );
+			Game.Murderer.Inventory.Add( new Knife() );
+			Game.Detective.Inventory.Add( new Revolver() );
 			
 			BlackScreen.HideScreen();
 			base.OnStart();

@@ -11,8 +11,8 @@ namespace Murder
 		[Net] public BaseRound Round { get; set; }
 		[Net] public bool RespawnEnabled { get; set; } = true;
 		
-		public MurderPlayer LastMurderer { get; set; }
-		public MurderPlayer LastDetective { get; set; }
+		public MurderPlayer Murderer { get; set; }
+		public MurderPlayer Detective { get; set; }
 		
 		public MurderGame()
 		{
