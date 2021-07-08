@@ -1,0 +1,33 @@
+﻿BlackScreen
+{
+	background-color: black;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center; /* for single line flex container */
+	align-content: center; /* for multi-line flex container */
+	flex-direction: column;
+	
+	.title
+	{
+		color: white;
+		font-family: Poppins, serif;
+		font-size: 100px;
+		text-align: center;
+	}
+	
+	.description
+	{
+		color: white;
+		font-family: Poppins, serif;
+		font-size: 32px;
+	}
+	
+	&.hide
+	{
+		opacity: 0;
+	}
+}
