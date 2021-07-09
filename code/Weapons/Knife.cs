@@ -78,7 +78,7 @@ namespace Murder.Weapons
 			
 			var knife = new ThrownKnife();
 			knife.Position = Owner.EyePos + Owner.EyeRot.Forward * 40;
-			knife.Rotation = Rotation.LookAt( Vector3.Random.Normal );
+			knife.Rotation = Owner.EyeRot;
 			knife.SetupPhysicsFromModel( PhysicsMotionType.Dynamic );
 			knife.PhysicsGroup.Velocity = Owner.EyeRot.Forward * 2000;
 
