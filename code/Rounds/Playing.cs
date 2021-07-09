@@ -23,8 +23,7 @@ namespace Murder.Rounds
 		
 		public override int RoundDuration => 240;
 		public override string RoundName => "Playing";
-
-		// TODO make the player not respawn
+		
 		public override void OnPlayerKilled( MurderPlayer player )
 		{
 			if ( Players.Contains( player ) )
@@ -105,6 +104,7 @@ namespace Murder.Rounds
 				player.FakeName = _fakeNames[random.Next( _fakeNames.Length )];
 				
 				player.Respawn();
+				player.Coat.RenderColor = player.FakeColor;
 			}
 
 			Game.Murderer.Inventory.Add( new Knife() );

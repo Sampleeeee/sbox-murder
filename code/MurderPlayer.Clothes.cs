@@ -1,4 +1,6 @@
-﻿using Sandbox;
+﻿using System.Threading.Tasks;
+using Murder.Rounds;
+using Sandbox;
 
 namespace Murder
 {
@@ -11,18 +13,15 @@ namespace Murder
 			SetModel( model );
 			SetParent( player, true );
 
-			// TODO for some reason this still doesn't use the correct color
-			if ( addColor )
-				RenderColor = player.FakeColor;
-				
 			EnableShadowInFirstPerson = true;
 			EnableHideInFirstPerson = true;
 		}
+
 	}
 	
 	public partial class MurderPlayer
 	{
-		private Clothing _coat;
+		public Clothing Coat { get; set; }
 		private Clothing _shirt;
 		private Clothing _pants;
 		private Clothing _shoes;
@@ -30,11 +29,9 @@ namespace Murder
 		
 		public void Dress()
 		{
-			Log.Info( "Dresseing" );
-			
 			Strip();
 
-			_coat = new Clothing( this, "models/citizen_clothes/jacket/labcoat.vmdl", true );
+			Coat = new Clothing( this, "models/citizen_clothes/jacket/labcoat.vmdl", true );
 			// _shirt = new Clothing( this, "models/citizen_clothes/shirt/shirt_longsleeve.scientist.vmdl" );
 			// _pants = new Clothing( this, "models/citizen_clothes/trousers/trousers.lab.vmdl" );
 			_shoes = new Clothing( this, "models/citizen_clothes/shoes/shoes.workboots.vmdl" );
@@ -43,7 +40,7 @@ namespace Murder
 
 		public void Strip()
 		{
-			_coat?.Delete();
+			Coat?.Delete();
 			_shirt?.Delete();
 			_pants?.Delete();
 			_shoes?.Delete();
