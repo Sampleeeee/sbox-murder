@@ -15,12 +15,6 @@ namespace Murder.Rounds
 			"Xray", "Zulu"
 		};
 
-		private static Color32[] _colors =
-		{
-			Color.Black, Color32.Blue, Color32.Cyan, Color32.Green, Color32.Magenta, Color32.Red, Color32.White,
-			Color32.Yellow
-		};
-		
 		public override int RoundDuration => 240;
 		public override string RoundName => "Playing";
 		
@@ -100,7 +94,8 @@ namespace Murder.Rounds
 				player.Ragdoll = null;
 
 				var random = new Random();
-				player.FakeColor = _colors[random.Next( _colors.Length )];
+				player.FakeColor = Color.Random.ToColor32();
+				
 				player.FakeName = _fakeNames[random.Next( _fakeNames.Length )];
 				
 				player.Respawn();
