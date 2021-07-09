@@ -77,7 +77,7 @@ namespace Murder
 			
 			_taunt?.SetPosition( EyePos );
 			
-			if ( !IsServer && !Input.Pressed( InputButton.Flashlight ) ) return;
+			if ( !IsServer && !Input.Pressed( InputButton.Menu ) ) return;
 			
 			_taunt?.Stop();
 			_taunt = Sound.FromEntity( _taunts.Random(), this );
