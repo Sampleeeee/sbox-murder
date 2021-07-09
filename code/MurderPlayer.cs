@@ -1,4 +1,6 @@
-﻿using Murder.Weapons;
+﻿using System;
+using Murder.Rounds;
+using Murder.Weapons;
 using Sandbox;
 
 namespace Murder
@@ -10,8 +12,17 @@ namespace Murder
 		
 		[Net] public string FakeName { get; set; }
 		[Net] public Color32 FakeColor { get; set; }
+
+		private Sound _tauntSound;
 		
 		public string SteamName { get; set; }
+
+		private static string[] _taunts =
+		{
+			"taunt.help1", "taunt.scream1", "taunt.scream2", "taunt.scream3", "taunt.scream4", "taunt.morose1",
+			"taunt.morose2", "taunt.morose3", "taunt.morose4", "taunt.morose5", "taunt.funny1", "taunt.funny2",
+			"taunt.funny3", "taunt.funny4", "taunt.funny5", "taunt.funny6", "taunt.funny7"
+		};
 		
 		public MurderPlayer()
 		{
@@ -55,6 +66,23 @@ namespace Murder
 				return;
 
 			SimulateActiveChild( cl, ActiveChild );
+			TauntSimulate();
+		}
+
+		// TODO This could be much better, with a menu or something
+		// For now this is fine, maybe add multiple controls to play the different kinds of taunts
+		private void TauntSimulate()
+		{
+			if ( Game.Current is not MurderGame {Round: Playing} ) return;
+			if ( Dead ) return;
+
+			_tauntSound.SetPosition( EyePos );
+			
+			if ( IsServer && Input.Pressed( InputButton.Flashlight ) )
+			{
+				_tauntSound.Stop();
+				_tauntSound = Sound.FromEntity( _taunts[new Random().Next( _taunts.Length )], this );
+			}
 		}
 
 		public void MakeSpectator()
