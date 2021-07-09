@@ -75,9 +75,10 @@ namespace Murder.UserInterface
 			entry.Message.Text = message;
 			entry.NameLabel.Text = name;
 			entry.NameLabel.Style.FontColor = color;
+			entry.Avatar.Style.BackgroundColor = color;
 
 			entry.SetClass( "noname", string.IsNullOrEmpty( name ) );
-			entry.SetClass( "noavatar", true );
+			entry.SetClass( "noavatar", false );
 		}
 
 		[ClientRpc]
@@ -108,9 +109,9 @@ namespace Murder.UserInterface
 			
 			var game = Game.Current as MurderGame;
 			var caller = ConsoleSystem.Caller.Pawn as MurderPlayer;
-			
-			Assert.NotNull( game );
-			Assert.NotNull( caller );
+
+			if ( game is null ) return;
+			if ( caller is null ) return;
 			
 			if ( game.Round is Playing )
 			{
