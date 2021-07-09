@@ -9,7 +9,7 @@ namespace Murder
 			float ws = Duck.GetWishSpeed();
 			if ( ws >= 0 ) return ws;
 
-			if ( Input.Down( InputButton.Run ) ) return Pawn.Tags.Has( "murderer" ) ? SprintSpeed : DefaultSpeed;
+			if ( Input.Down( InputButton.Run ) ) return Pawn.Tags.Has( "murderer" ) ? DefaultSpeed + 50f : DefaultSpeed;
 			return Input.Down( InputButton.Walk ) ? WalkSpeed : DefaultSpeed;
 		}
 	}
