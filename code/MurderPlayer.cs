@@ -13,7 +13,7 @@ namespace Murder
 		[Net] public string FakeName { get; set; }
 		[Net] public Color32 FakeColor { get; set; }
 
-		private Sound? _taunt = null;
+		// private Sound? _taunt = null;
 		
 		public string SteamName { get; set; }
 
@@ -75,12 +75,16 @@ namespace Murder
 			if ( Game.Current is not MurderGame game ) return;
 			if ( game.Round is Playing && Dead ) return;
 			
-			_taunt?.SetPosition( EyePos );
+			// using ( Prediction.Off() )
+				// _taunt?.SetPosition( EyePos );
 			
-			if ( !IsServer && !Input.Pressed( InputButton.Menu ) ) return;
-			
-			_taunt?.Stop();
-			_taunt = Sound.FromEntity( _taunts.Random(), this );
+			// if ( !IsServer && !Input.Pressed( InputButton.Menu ) ) return;
+
+			// using ( Prediction.Off() )
+			// {
+				// _taunt?.Stop();
+				// _taunt = Sound.FromEntity( _taunts.Random(), this );
+			// }
 		}
 
 		public void MakeSpectator()
