@@ -50,5 +50,11 @@ namespace Murder.UserInterface
 		{
 			Current.Hide();
 		}
+
+		[ClientRpc]
+		public static void PlaySound( string sound )
+		{
+			Sound.FromEntity( sound, Local.Pawn );
+		}
 	}
 }

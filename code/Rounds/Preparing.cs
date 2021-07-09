@@ -51,6 +51,8 @@ namespace Murder.Rounds
 
 		protected override void OnStart()
 		{
+			Client.All.ToList().ForEach( x => (x.Pawn as MurderPlayer)?.Respawn() );
+			
 			Game.RespawnEnabled = false;
 
 			FindNewDetective();
@@ -61,6 +63,7 @@ namespace Murder.Rounds
 			
 			BlackScreen.ShowTitle( to, "You are a bystander", Color.White );
 			BlackScreen.ShowDescription( to, "There is a murderer on the loose. Do not die.", Color.White );
+			BlackScreen.PlaySound( To.Everyone, "round.start" );
 		}
 
 		protected override void OnTimeUp()
