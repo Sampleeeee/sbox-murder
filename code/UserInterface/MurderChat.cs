@@ -63,19 +63,38 @@ namespace Murder.UserInterface
 			var entry = Canvas.AddChild<MurderChatEntry>();
 
 			entry.Message.Text = message;
-			entry.Name.Text = name;
-			
+			entry.NameLabel.Text = name;
+			entry.Avatar.SetTexture( avatar );
+
 			entry.SetClass( "noname", string.IsNullOrEmpty( name ) );
 			entry.SetClass( "noavatar", string.IsNullOrEmpty( avatar ) );
 		}
 
-		[ClientCmd( "chat_add", CanBeCalledFromServer = true )]
+		public void AddEntry( string name, string message, Color color )
+		{
+			var entry = Canvas.AddChild<MurderChatEntry>();
+
+			entry.Message.Text = message;
+			entry.NameLabel.Text = name;
+			entry.NameLabel.Style.FontColor = color;
+
+			entry.SetClass( "noname", string.IsNullOrEmpty( name ) );
+			entry.SetClass( "noavatar", true );
+		}
+
+		[ClientRpc]
 		public static void AddChatEntry( string name, string message, string avatar = null )
 		{
 			Current?.AddEntry( name, message, avatar );
 		}
 
-		[ClientCmd( "chat_addinfo", CanBeCalledFromServer = true )]
+		[ClientRpc]
+		public static void AddChatEntry( string name, string message, Color color )
+		{
+			Current?.AddEntry( name, message, color );
+		}
+
+		[ClientRpc]
 		public static void AddInformation( string message )
 		{
 			Current?.AddEntry( null, message );
@@ -85,16 +104,16 @@ namespace Murder.UserInterface
 		public static void Say( string message )
 		{
 			Assert.NotNull( ConsoleSystem.Caller );
-
+			
 			if ( message.Contains( '\n' ) || message.Contains( '\r' ) )
 				return;
-
+			
 			var game = Game.Current as MurderGame;
 			var caller = ConsoleSystem.Caller.Pawn as MurderPlayer;
-
+			
 			Assert.NotNull( game );
 			Assert.NotNull( caller );
-
+			
 			if ( game.Round is Playing )
 			{
 				if ( caller.Dead )
@@ -102,27 +121,28 @@ namespace Murder.UserInterface
 						ConsoleSystem.Caller.Name,
 						message, $"avatar:{ConsoleSystem.Caller.SteamId}" );
 				else
-					AddChatEntry( To.Everyone, caller.FakeName, message );
+					AddChatEntry( To.Everyone, caller.FakeName, message, caller.FakeColor.ToColor() );
 			}
 			else
 			{
-				AddChatEntry( To.Multiple( Client.All.Where( x => (x as MurderPlayer).Dead ) ),
-					ConsoleSystem.Caller.Name,
-					message, $"avatar:{ConsoleSystem.Caller.SteamId}" );
+				AddChatEntry( To.Everyone, ConsoleSystem.Caller.Name, message,
+					$"avatar:{ConsoleSystem.Caller.SteamId}" );
 			}
 		}
 	}
 
 	public class MurderChatEntry : Panel
 	{
-		public Label Name { get; set; }
-		public Label Message { get; set; }
-		
-		public RealTimeSince TimeSinceBorn { get; set; }
+		public Label NameLabel { get; internal set; }
+		public Label Message { get; internal set; }
+		public Image Avatar { get; internal set; }
+
+		public RealTimeSince TimeSinceBorn = 0;
 
 		public MurderChatEntry()
 		{
-			Name = Add.Label( "Name", "name" );
+			Avatar = Add.Image();
+			NameLabel = Add.Label( "Name", "name" );
 			Message = Add.Label( "Message", "message" );
 		}
 
@@ -131,7 +151,9 @@ namespace Murder.UserInterface
 			base.Tick();
 
 			if ( TimeSinceBorn > 10 )
+			{
 				Delete();
+			}
 		}
 	}
 }
