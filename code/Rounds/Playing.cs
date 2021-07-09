@@ -10,9 +10,9 @@ namespace Murder.Rounds
 	{
 		private static string[] _fakeNames =
 		{
-			"Adam", "Alex", "Aaron", "Ben", "Carl", "Dan", "David", "Edward", "Fred", "Frank", "George", "Hal",
-			"Hank", "Ike", "John", "Jack", "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul",
-			"Peter", "Roger", "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter"
+			"Adam", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "Ida", "Juliet", "Kilo",
+			"Lincoln", "Mike", "Nora", "Ocean", "Paul", "Queen", "Robert", "Sam", "Union", "Victor", "Whiskey",
+			"Xray", "Zulu"
 		};
 
 		private static Color32[] _colors =
