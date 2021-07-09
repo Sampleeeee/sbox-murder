@@ -23,20 +23,14 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Analyzer Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.Generator.dll" />
-		<Reference Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.System.dll" />
-		<Reference Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.Engine.dll" />
-		<Reference Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.Game.dll" />
+		<Analyzer Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.Generator.dll"/>
+		<Reference Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.System.dll"/>
+		<Reference Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.Engine.dll"/>
+		<Reference Include="D:/Games/steamapps/common/sbox/bin/managed/Sandbox.Game.dll"/>
 	</ItemGroup>
 
   <ItemGroup>
 <ProjectReference Include="D:\Games\steamapps\common\sbox\Addons\base\code\base.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="MurderPlayer.Clothes.cs">
-      <DependentUpon>MurderPlayer.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>
