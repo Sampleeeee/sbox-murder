@@ -92,11 +92,9 @@ namespace Murder.Rounds
 
 				player.Ragdoll?.Delete();
 				player.Ragdoll = null;
-
-				var random = new Random();
-				player.FakeColor = Color.Random.ToColor32();
 				
-				player.FakeName = _fakeNames[random.Next( _fakeNames.Length )];
+				player.FakeColor = Color.Random.ToColor32();
+				player.FakeName = _fakeNames.Random();
 				
 				player.Respawn();
 				player.Coat.RenderColor = player.FakeColor;

@@ -20,7 +20,7 @@ namespace Murder.Rounds
 
 		private void FindNewDetective()
 		{
-			var pawn = Client.All[new Random().Next( Client.All.Count )].Pawn;
+			var pawn = Client.All.Random().Pawn;
 
 			pawn.Tags.Add( "detective" );
 			Game.Detective = pawn as MurderPlayer;
@@ -32,7 +32,7 @@ namespace Murder.Rounds
 
 		private void FindNewMurderer()
 		{
-			var pawn = Client.All[new Random().Next( Client.All.Count )].Pawn;
+			var pawn = Client.All.Random().Pawn;
 
 			if ( Game.Detective != pawn )
 			{
