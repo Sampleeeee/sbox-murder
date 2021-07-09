@@ -13,7 +13,7 @@ namespace Murder
 		[Net] public string FakeName { get; set; }
 		[Net] public Color32 FakeColor { get; set; }
 
-		private Sound? _tauntSound;
+		private Sound? _taunt = null;
 		
 		public string SteamName { get; set; }
 
@@ -52,7 +52,6 @@ namespace Murder
 			Inventory.Add( new Fists(), true );
 
 			Dress();
-			base.Respawn();
 		}
 
 		public override void Simulate( Client cl )
@@ -76,15 +75,12 @@ namespace Murder
 			if ( Game.Current is not MurderGame game ) return;
 			if ( game.Round is Playing && Dead ) return;
 			
-			_tauntSound?.SetPosition( EyePos );
-
-			if ( !IsServer || !Input.Pressed( InputButton.Flashlight ) ) return;
-
-			_tauntSound?.Stop();
-
-			string sound = _taunts.Random();
-			Log.Info( sound );
-			_tauntSound = Sound.FromWorld( sound, EyePos );
+			_taunt?.SetPosition( EyePos );
+			
+			if ( !IsServer && !Input.Pressed( InputButton.Flashlight ) ) return;
+			
+			_taunt?.Stop();
+			_taunt = Sound.FromEntity( _taunts.Random(), this );
 		}
 
 		public void MakeSpectator()
