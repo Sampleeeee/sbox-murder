@@ -1,0 +1,41 @@
+﻿MurderNameTags
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	pixel-snap: 0;
+
+	BaseMurderNameTag
+	{
+		font-family: Poppins, serif;
+		position: absolute;
+		font-weight: 500;
+		color: white;
+		background-color: rgba(#222, 0.95);
+		font-size: 40px;
+		transform-origin: 50% 0%;
+		border-radius: 10px;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row-reverse;
+
+
+		label
+		{
+			height: 60px;
+			margin: 20px;
+			padding: 1px 60px;
+			//padding-left: 40px;
+		}
+
+		// TODO i kinda broke this and it doesn't show up anymore
+		// Not a big priority to fix though
+		image
+		{
+			margin-right: 0;
+			border-radius: 100px;
+		}
+	}
+}
