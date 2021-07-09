@@ -32,8 +32,6 @@ namespace Murder.UserInterface
 		[ClientRpc]
 		public static void ShowTitle( string message, Color color )
 		{
-			Log.Info( "Got Client Rpc" );
-			
 			Current.Title.Text = message;
 			Current.Title.Style.FontColor = color;
 			Current.Show();

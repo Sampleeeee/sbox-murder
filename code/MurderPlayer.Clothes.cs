@@ -22,8 +22,6 @@ namespace Murder
 	public partial class MurderPlayer
 	{
 		public Clothing Coat { get; set; }
-		private Clothing _shirt;
-		private Clothing _pants;
 		private Clothing _shoes;
 		private Clothing _hair;
 		
@@ -32,8 +30,6 @@ namespace Murder
 			Strip();
 
 			Coat = new Clothing( this, "models/citizen_clothes/jacket/labcoat.vmdl", true );
-			// _shirt = new Clothing( this, "models/citizen_clothes/shirt/shirt_longsleeve.scientist.vmdl" );
-			// _pants = new Clothing( this, "models/citizen_clothes/trousers/trousers.lab.vmdl" );
 			_shoes = new Clothing( this, "models/citizen_clothes/shoes/shoes.workboots.vmdl" );
 			_hair = new Clothing( this, "models/citizen_clothes/hair/hair_malestyle02.vmdl" );
 		}
@@ -41,8 +37,6 @@ namespace Murder
 		public void Strip()
 		{
 			Coat?.Delete();
-			_shirt?.Delete();
-			_pants?.Delete();
 			_shoes?.Delete();
 			_hair?.Delete();
 		}

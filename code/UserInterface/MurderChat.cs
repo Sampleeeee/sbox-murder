@@ -34,8 +34,6 @@ namespace Murder.UserInterface
 
 		private void Open()
 		{
-			Log.Info( "OPening" );
-			
 			AddClass( "open" );
 			Input.Focus();
 		}
