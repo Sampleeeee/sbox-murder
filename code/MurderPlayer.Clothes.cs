@@ -11,8 +11,10 @@ namespace Murder
 			SetModel( model );
 			SetParent( player, true );
 
-			RenderColor = player.FakeColor;
-			
+			// TODO for some reason this still doesn't use the correct color
+			if ( addColor )
+				RenderColor = player.FakeColor;
+				
 			EnableShadowInFirstPerson = true;
 			EnableHideInFirstPerson = true;
 		}
