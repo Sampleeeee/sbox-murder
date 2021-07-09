@@ -17,8 +17,8 @@ namespace Murder.Rounds
 
 		private static Color32[] _colors =
 		{
-			Color.Black, Color32.Blue, Color32.Cyan, Color32.Gray, Color32.Green, Color32.Magenta, Color32.Red,
-			Color32.White, Color32.Yellow
+			Color.Black, Color32.Blue, Color32.Cyan, Color32.Green, Color32.Magenta, Color32.Red, Color32.White,
+			Color32.Yellow
 		};
 		
 		public override int RoundDuration => 240;
