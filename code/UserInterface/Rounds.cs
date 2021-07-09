@@ -1,12 +1,18 @@
 ﻿using Murder.Rounds;
 using Sandbox;
 using Sandbox.UI;
+using Sandbox.UI.Construct;
 
 namespace Murder.UserInterface
 {
 	[UseTemplate( "/UserInterface/Rounds.htm" )]
 	public class Rounds : Panel
 	{
+		public Label Name { get; set; }
+
+		public string TimeLeft =>
+			(Game.Current as MurderGame)?.Round?.TimeLeftFormatted ?? "";
+		
 		public string Status
 		{
 			get
@@ -32,7 +38,23 @@ namespace Murder.UserInterface
 			}
 		}
 
-		public string TimeLeft =>
-			(Game.Current as MurderGame)?.Round?.TimeLeftFormatted ?? "";
+		public override void Tick()
+		{
+			if ( Game.Current is not MurderGame game ) return;
+			if ( Local.Pawn is not MurderPlayer player ) return;
+
+			if ( game.Round is Playing )
+			{
+				Name ??= Add.Label( $"{player.FakeName}" );
+				Name.Style.FontColor = player.FakeColor.ToColor();
+			}
+			else
+			{
+				Name?.Delete();
+				Name = null;
+			}
+
+			base.Tick();
+		}
 	}
 }

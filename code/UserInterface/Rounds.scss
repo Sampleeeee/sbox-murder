@@ -1,22 +1,11 @@
 Rounds
 {
-	.time-left
-	{
-		position: absolute;
-		bottom: 45px;
-		left: 10px;
-		color: white;
-		font-family: Poppins, serif;
-		font-size: 32px;
-	}
-	
-	.status
-	{
-		position: absolute;
-		bottom: 10px;
-		left: 10px;
-		color: white;
-		font-family: Poppins, serif;
-		font-size: 32px;
-	}
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	display: flex;
+	flex-direction: column;
+	font-family: Poppins, serif;
+	font-size: 32px;
+	color: white;
 }
