@@ -120,7 +120,7 @@ namespace Murder.Rounds
 				player.Tags.Remove( "murderer" );
 				player.Tags.Remove( "detective" );
 
-				player.FakeName = client.Name;
+				// player.FakeName = client.Name;
 				player.FakeColor = Color32.White;
 				
 				player.Respawn();
