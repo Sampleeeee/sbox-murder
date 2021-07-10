@@ -62,7 +62,7 @@ namespace Murder.Weapons
 		{
 			TimeSincePrimaryAttack = 0;
 
-			PlaySound( "Knife.Attack" );
+			PlaySound( "rust_boneknife.attack" );
 			ViewModelEntity?.SetAnimBool( "fire", true );
 			SetAnimBool( "fire", true );
 			MeleeStrike( 150f, 1.5f );
